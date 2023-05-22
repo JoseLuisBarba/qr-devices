@@ -27,5 +27,13 @@
   "devDependencies": {
     "cross-env": "^7.0.3",
     "nodemon": "^2.0.22"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoseLuisBarba/qr-devices.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JoseLuisBarba/qr-devices/issues"
+  },
+  "homepage": "https://github.com/JoseLuisBarba/qr-devices#readme"
 }

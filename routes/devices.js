@@ -180,4 +180,37 @@ router.delete(
 );
 
 
+
+// @desc User devices
+// @route GET /devices/user/:userId
+router.get(
+    '/user/:userId', 
+    ensureAuth,
+    async (req, res) => {
+        try {
+            
+            const devices = await Device.find(
+                {
+                    user: req.params.userId,
+                }
+            )
+            .populate('user')
+            .lean()
+            .exec();
+
+            res.render('devices/index',
+                {
+                    devices,
+                }
+            )
+
+        } catch (err) {
+            console.log(err);
+            res.render('error/500');
+
+        }
+    }
+);
+
+
 module.exports = router;
