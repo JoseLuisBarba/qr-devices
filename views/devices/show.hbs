@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col s12 m8">
+        <h3>{{device.serie}}
+            <small>{{{editIcon device.user user device._id false}}}</small>
+        </h3>
+        <div class="card device">
+            <div class="card-content">
+                <span class="card-title">{{formatDate date 'MMMM Do YYYY, h:mm:ss a'}}</span>
+                {{{device.body}}}
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m4">
+        <div class="card center-align">
+            <div class="card-content">
+                <span class="card-title">{{device.user.firstName}}</span>
+                <img src="{{device.user.image}}" class="circle responsive-img img-small">
+            </div>
+            <div class="card-action">
+                <a href="/devices/user/{{device.user._id}}">More From {{device.user.firstName}}</a>
+            </div>
+        </div>
+    </div>
+</div>

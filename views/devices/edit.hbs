@@ -1,0 +1,119 @@
+
+<h3>
+    <i class="fa fa-tablet" aria-hidden="true"></i> Edit Device
+</h3>
+
+
+
+
+
+<div class="row">
+    <form action="/devices/{{device._id}}" method="POST" class="col s12">
+
+        <input type="hidden" name="_method" value="PUT">
+        
+        
+
+
+        <!--  device photo 
+        <div class="row">
+            <div class="file-field input-field">
+                <div class="btn">
+                    <span>File</span>
+                    <input type="file">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
+        </div>
+        -->
+
+        <div class="row">
+            <div class="row">
+                <!--  device serie -->
+                <div class="input-field col s6">
+                    <i class="fa fa-address-card prefix"></i>
+                    <input id="serie" name="serie" type="text" class="validate" value="{{device.serie}}">
+                    <label for="serie">Serie</label>
+                </div>
+                <!--  device date -->
+                <div class="input-field col s6">
+                    <i class="fa fa-calendar prefix"></i>
+                    <input id="date" name="date" type="text" class="datepicker">
+                    <label for="date">Date</label>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="row">
+
+                <!--  device type -->
+                <div class="input-field col s6">
+                    <i class="fa fa-tablet prefix"></i>
+                    <select id="type" name="type" class="icons">
+                        {{#select device.type}}
+                            
+                            <option value="Laptop" data-icon="./../../public/images/laptop.jpg" class="left" selected> Laptop </option>
+                            <option value="Tablet" data-icon="./../../public/images/tablet.jpg" class="left"> Tablet</option>
+                            <option value="Desktop" data-icon="./../../public/images/desktop.jpg" class="left"> Desktop</option>
+                            <option value="Printer" data-icon="./../../public/images/printer.jpg" class="left"> Printer</option>
+                        {{/select}}
+                    </select>
+                    <label for="type">Type of device</label>
+                </div>
+
+                <!--  device color -->
+                <div class="input-field col s6">
+                    <i class="fa fa-laptop prefix"></i>
+                    <input  id="color" name="color" type="text" class="autocomplete">
+                    <label for="color">Color</label>
+                </div>
+
+                
+
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="row">
+                <!--  device march -->
+                <div class="input-field col s6">
+                    <i class="fa fa-store prefix"></i>
+                    <input id="march" name="march" type="text" class="validate">
+                    <label for="march">March</label>
+                </div>
+                <!--  device model -->
+                <div class="input-field col s6">
+                    <i class="fa fa-microchip prefix"></i>
+                    <input id="model" name="model" type="text" class="validate">
+                    <label for="model">model</label>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="input-field">
+                <h5>Tell Us Your Device:</h5>
+                <textarea id="body" name="body">{{device.body}}</textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <input type="submit" value="Save" class="btn">
+            <a href="/dashboard" class="btn orange">Cancel</a>
+        </div>
+    
+
+    </form>
+</div>
+
+
+

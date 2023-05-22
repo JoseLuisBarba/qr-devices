@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled font-awesome cdnjs CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Compiled style.css CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <title>QR Devices</title>
+</head>
+<body>
+
+
+    
+    {{> _header}}
+    <div class="section white">
+        <div class="row container">
+
+        {{> _add_btn}}
+
+        <div class="container">
+            {{{body}}}
+        </div>
+        
+        </div>
+    </div>
+
+
+    
+
+
+    {{> _footer}}
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.21.0/ckeditor.js" integrity="sha512-ff67djVavIxfsnP13CZtuHqf7VyX62ZAObYle+JlObWZvS4/VQkNVaFBOO6eyx2cum8WtiZ0pqyxLCQKC7bjcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/10.32.0/js/jquery.fileupload.min.js" integrity="sha512-P7EUiLYW7QUrhYrLgaJ++ok2j2I7Pu0UgGnrpLowujPZicu7mIR0V/Trq+7kl/0nEkp6yNGh8eFJY1JUv3dkPA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js" integrity="sha512-/6TZODGjYL7M8qb7P6SflJB/nTGE79ed1RfJk3dfm/Ib6JwCT4+tOfrrseEHhxkIhwG8jCl+io6eaiWLS/UX1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        M.Sidenav.init(document.querySelector('.sidenav'));
+        M.FormSelect.init(document.querySelector('#serie'));
+        M.FormSelect.init(document.querySelector('#date'));
+        M.FormSelect.init(document.querySelector('#type'));
+        M.FormSelect.init(document.querySelector('#color'));
+        M.FormSelect.init(document.querySelector('#march'));
+        M.FormSelect.init(document.querySelector('#model'));
+        CKEDITOR.replace('body', {
+            plugins: 'wysiwygarea, toolbar, basicstyles, link'
+        });
+       
+
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems, options);
+        });
+
+        // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
+        // var collapsibleElem = document.querySelector('.collapsible');
+        // var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
+
+        // Or with jQuery
+
+        $(document).ready(function(){
+            $('.sidenav').sidenav();
+        });
+
+
+        // calendar - add 
+        $(document).ready(function(){
+             $('.datepicker').datepicker();
+         });
+
+         // autocomplete
+        $(document).ready(function(){
+            $('input.autocomplete').autocomplete({
+                data: {
+                    "black": null,
+                    "gray": null,
+                    "white": null,
+                    "blue": null,
+                    "gold": null,
+                    "red": null,
+                    "green": null,
+                },
+            });
+        });
+
+        // select type 
+        $(document).ready(function(){
+            $('select').formSelect();
+        });
+
+
+        // carusel
+        $(document).ready(function(){
+            $('.carousel').carousel();
+        });
+
+
+        // sidenav
+        $(document).ready(function(){
+            $('.sidenav').sidenav();
+        });
+        
+    </script>
+
+</body>
+</html>
