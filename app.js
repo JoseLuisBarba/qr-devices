@@ -107,7 +107,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', require('./routes/index'));
 app.use('/auth', require('./routes/auth'));
 app.use('/devices', require('./routes/devices'));
-
+app.use('/users', require('./routes/users'));
 
 const PORT = process.env.PORT || 3000;
 
