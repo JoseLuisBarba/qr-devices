@@ -1,6 +1,6 @@
 
 <h3>
-    <i class="fa fa-tablet" aria-hidden="true"></i> Add Device
+    <i class="fa fa-tablet" aria-hidden="true"></i> Agregar Dispositivo
 </h3>
 
 
@@ -40,7 +40,7 @@
                 <div class="input-field col s6">
                     <i class="fa fa-calendar prefix"></i>
                     <input id="date" name="date" type="text" class="datepicker">
-                    <label for="date">Date</label>
+                    <label for="date">Fecha de compra</label>
                 </div>
 
             </div>
@@ -55,23 +55,38 @@
                 <div class="input-field col s6">
                     <i class="fa fa-tablet prefix"></i>
                     <select id="type" name="type" class="icons">
-                        <option value="" disabled selected>Choose your option</option>
-                        <option value="Laptop" data-icon="./../../public/images/laptop.jpg" class="left"> Laptop </option>
-                        <option value="Tablet" data-icon="./../../public/images/tablet.jpg" class="left"> Tablet</option>
-                        <option value="Desktop" data-icon="./../../public/images/desktop.jpg" class="left"> Desktop</option>
-                        <option value="Printer" data-icon="./../../public/images/printer.jpg" class="left"> Printer</option>
+                        <option value="" disabled selected>Escogue una opción</option>
+                        <option value="Laptop" data-icon="/images/devices/laptop.jpg" class="left" alt=""> Laptop </option>
+                        <option value="Tablet" data-icon="/images/devices/tablet.jpg" class="left" alt=""> Tablet</option>
+                        <option value="Desktop" data-icon="/images/devices/desktop.jpg" class="left" alt=""> Desktop</option>
+                        <option value="Printer" data-icon="/images/devices/printer.jpg" class="left" alt=""> Printer</option>
                     </select>
-                    <label for="type">Type of device</label>
-                </div>
+                    <label for="type">Tipo de dispositivo</label>
+                </div> 
 
-                <!--  device color -->
+
+
                 <div class="input-field col s6">
-                    <i class="fa fa-laptop prefix"></i>
-                    <input  id="color" name="color" type="text" class="autocomplete">
-                    <label for="color">Color</label>
-                </div>
+                    <i class="fa fa-tablet prefix"></i>
+                    <select id="color" name="color" class="icons">
+                        <option value="" disabled selected>Escogue una opción</option>
+                        <option value="negro" class="blue-text text-darken-2"> Negro </option>
 
-                
+                        
+                        <option value="blanco" > Blanco</option>
+                        <option value="gris" > Gris</option>
+                        <option value="azul" > Azul</option>
+                        <option value="rosado"> Rosado</option>
+                        <option value="lila" > Lila</option>
+                        <option value="rojo" > Rojo</option>
+                        <option value="dorado" > Dorado</option>
+                        <option value="plateado" > Plateado</option>
+                    </select>
+                    <label for="color">Color relevante del dispositivo</label>
+                </div> 
+
+
+
 
             </div>
         </div>
@@ -80,16 +95,37 @@
         <div class="row">
             <div class="row">
                 <!--  device march -->
+
+
                 <div class="input-field col s6">
                     <i class="fa fa-store prefix"></i>
-                    <input id="march" name="march" type="text" class="validate">
-                    <label for="march">March</label>
-                </div>
+                    <select id="march" name="march" class="icons">
+                        <option value="" disabled selected>Escogue una la marca del dispositivo</option>
+                        <option value="Acer" data-icon="/images/march/acer.jpg" class="left" alt=""> Acer </option>
+                        <option value="Apple" data-icon="/images/march/apple.jpg" class="left" alt=""> Apple </option>
+                        <option value="Dell" data-icon="/images/march/dell.jpg" class="left" alt=""> Dell </option>
+                        <option value="HP" data-icon="/images/march/hp.jpg" class="left" alt=""> HP </option>
+                        <option value="Huawei" data-icon="/images/march/huawei.jpg" class="left" alt=""> Huawei </option>
+                        <option value="Iphone" data-icon="/images/march/iphone.jpg" class="left" alt=""> Iphone </option>
+                        <option value="Lenovo" data-icon="/images/march/lenovo.jpg" class="left" alt=""> Lenovo </option>
+                        <option value="LG" data-icon="/images/march/lg.jpg" class="left" alt=""> LG </option>
+                        <option value="Motorola" data-icon="/images/march/motorola.jpg" class="left" alt=""> Motorola </option>
+                        <option value="Samsung" data-icon="/images/march/samsung.jpg" class="left" alt=""> Samsung </option>
+                        <option value="Xiaomi" data-icon="/images/march/xiaomi.jpg" class="left" alt=""> Xiaomi </option>
+                        <option value="Laptop"> Otro </option>
+                    </select>
+                    <label for="march">Marca del dispositivo</label>
+                </div> 
+
+
+
+
+
                 <!--  device model -->
                 <div class="input-field col s6">
                     <i class="fa fa-microchip prefix"></i>
                     <input id="model" name="model" type="text" class="validate">
-                    <label for="model">model</label>
+                    <label for="model">Modelo</label>
                 </div>
 
             </div>
@@ -98,14 +134,14 @@
 
         <div class="row">
             <div class="input-field">
-                <h5>Tell Us Your Device:</h5>
+                <h5>Describe más detalles de tu dispositivo:</h5>
                 <textarea id="body" name="body"></textarea>
             </div>
         </div>
 
         <div class="row">
-            <input type="submit" value="Save" class="btn">
-            <a href="/dashboard" class="btn orange">Cancel</a>
+            <input type="submit" value="Guardar" class="btn">
+            <a href="/dashboard" class="btn orange">Cancelar</a>
         </div>
     
 
