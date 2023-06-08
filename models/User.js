@@ -7,6 +7,9 @@ const UserSchema = new mongoose.Schema(
             type: String,
             required: true
         },
+        collegeID:{
+            type: String,
+        }, 
         displayName: {
             type: String,
             uppercase: true,
@@ -25,6 +28,22 @@ const UserSchema = new mongoose.Schema(
             index: true,
             required: true
         },
+        gender:{
+            type: String,
+        },
+        cademicProgram:{
+            type: String,
+        },
+        birthdate:{
+            type: String
+        },
+        
+        phone: {
+            type: String,
+        },
+        address: {
+            type: String
+        },
         image: {
             type: String
         },
@@ -32,12 +51,6 @@ const UserSchema = new mongoose.Schema(
             type: Date,
             default: Date.now
         },
-        phone: {
-            type: [String],
-        },
-        address: {
-            type: String
-        }
     }
 );
 

@@ -9,10 +9,12 @@ const User = require('../models/User');
 
 
 
-// @desc Show all stories
-// @route GET /users/edit
+
+
+// @desc Show user
+// @route GET /users
 router.get(
-    '/edit', 
+    '/', 
     ensureAuth,
     async (req, res) => {
         try {
@@ -23,7 +25,7 @@ router.get(
             .exec();
             console.log(user);
 
-            res.render('users/edit',
+            res.render('users/profile',
                 {
                     user,
                 }
@@ -37,10 +39,40 @@ router.get(
 
 
 
+// @desc Show edit page
+// @route GET /users/edit/:id 
+router.get(
+    '/edit/:id', 
+    ensureAuth,
+    async (req, res) => {
 
+        try {
+            
+            const user = await User.findById(req.user.id)
+                .lean()
+                .exec();
+    
+            if (!user) {
+                return res.render('error/404');
+            }
+    
+            if (user._id != req.user.id) {
+                res.redirect('users/profile');
+            } else {
+                res.render('users/edit', 
+                    {
+                        user,
+                    }
+                );
+            }
+        } catch (err) {
+            console.log(err);
+            return res.render('error/500');
+        }
 
-
-
+        
+    }
+);
 
 
 

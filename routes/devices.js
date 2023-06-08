@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {ensureAuth} = require('../middleware/auth');
 const Device = require('../models/Device');
-
+const User = require('../models/User');
 
 // @desc Show add page
 // @route GET /devices/add 
@@ -42,14 +42,21 @@ router.get(
     async (req, res) => {
         try {
             const devices = await Device.find({user: req.user.id})
-            .populate('user')
-            .sort({ createdAt: 'desc'})
-            .lean()
-            .exec();
+                .populate('user')
+                .sort({ createdAt: 'desc'})
+                .lean()
+                .exec();
+            
+            
+            const user = await User.findById(req.user.id)
+                .lean()
+                .exec();
+            
 
             res.render('devices/index',
                 {
                     devices,
+                    user,
                 }
             );
         } catch (err) {
@@ -211,6 +218,9 @@ router.get(
         }
     }
 );
+
+
+
 
 
 module.exports = router;
