@@ -16,7 +16,7 @@
                      {{user.firstName}}
                 </span>
                 <img src="{{user.image}}" class="circle responsive-img img-small">
-                <a href="/users/edit/{{user._id}}" class="btn btn-float posfix center-align">
+                <a href="/users/edit/{{user._id}}" class="btn btn-float posfix center-align" data-position="bottom" data-tooltip="I am a tooltip">
                         <i class="fas fa-edit posfix"></i> Editar mi perfil
                 </a>
             </div>    
@@ -24,5 +24,55 @@
     </div>
 </div>
 
-<!-- Edit profile-->
+<!-- Imaformations -->
+<div class="row">
+
+    <!--Devices number-->
+    <div class="col s12 m4">
+        <div class="card center-align">
+            <div class="card-content">
+                <p> 18 </p>
+                <p><i class="fa fa-laptop prefix"></i> Dispositivos</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s12 m4">
+        <div class="card center-align">
+            <div class="card-content">
+                <p> 18 </p>
+                <p><i class="fa fa-pen-to-square prefix"></i> Modificaciones</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s12 m4">
+        <div class="card center-align">
+            <div class="card-content">
+                <p> 18 </p>
+                <p><i class="fa fa-user prefix"></i> Sesiones</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <ul class="collapsible">
+        <li>
+            <div class="collapsible-header"><i class="fa-solid fa-circle-info prefix" ></i>Información General</div>
+            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+        </li>
+        <li>
+            <div class="collapsible-header"><i class="fa-regular fa-comment-dots prefix"></i>Contácto</div>
+            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+        </li>
+        <li>
+            <div class="collapsible-header"><i class="fa-sharp fa-solid fa-location-dot prefix"></i>Dirección</div>
+            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+        </li>
+        
+        
+    </ul>
+</div>
 

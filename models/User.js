@@ -10,6 +10,9 @@ const UserSchema = new mongoose.Schema(
         collegeID:{
             type: String,
         }, 
+        email:{
+            type: String,
+        }, 
         displayName: {
             type: String,
             uppercase: true,
@@ -29,6 +32,9 @@ const UserSchema = new mongoose.Schema(
             required: true
         },
         gender:{
+            type: String,
+        },
+        filial:{
             type: String,
         },
         cademicProgram:{
