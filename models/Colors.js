@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 
-const TypeDeviceSchema = new mongoose.Schema(
+const ColorSchema = new mongoose.Schema(
     {
         name: {
             type: String,
@@ -19,4 +19,4 @@ const TypeDeviceSchema = new mongoose.Schema(
 
 
 
-module.exports = mongoose.model('TypeDevice', TypeDeviceSchema);
+module.exports = mongoose.model('Color', TypeDeviceSchema);

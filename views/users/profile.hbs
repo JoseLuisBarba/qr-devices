@@ -16,10 +16,10 @@
                      {{user.firstName}}
                 </span>
                 <img src="{{user.image}}" class="circle responsive-img img-small">
-                <a href="/users/edit/{{user._id}}" class="btn btn-float posfix center-align" data-position="bottom" data-tooltip="I am a tooltip">
-                        <i class="fas fa-edit posfix"></i> Editar mi perfil
-                </a>
-            </div>    
+            </div> 
+            <div class="card-action">
+                <a href="/users/edit/{{user._id}}">Editar mi perfil</a>
+            </div>   
         </div>
     </div>
 </div>
@@ -31,7 +31,7 @@
     <div class="col s12 m4">
         <div class="card center-align">
             <div class="card-content">
-                <p> 18 </p>
+                <p> {{numberDevices}} </p>
                 <p><i class="fa fa-laptop prefix"></i> Dispositivos</p>
             </div>
         </div>
@@ -61,15 +61,39 @@
     <ul class="collapsible">
         <li>
             <div class="collapsible-header"><i class="fa-solid fa-circle-info prefix" ></i>Información General</div>
-            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            <div class="collapsible-body">
+                <div class="row">
+                    <span >Número de matricula: {{user.collegeID}}</span>
+                </div>
+                <div class="row">
+                    <span >Nombres: {{user.displayName}}</span>
+                </div>
+                <div class="row">
+                    <span >Género: {{user.gender}}</span>
+                </div>
+                <div class="row">
+                    <span >Fecha de nacimiento: {{user.birthdate}}</span>
+                </div>
+            </div>
         </li>
         <li>
             <div class="collapsible-header"><i class="fa-regular fa-comment-dots prefix"></i>Contácto</div>
-            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            <div class="collapsible-body">
+                <div class="row">
+                    <span >Telefono: {{user.phone}}</span>
+                </div>
+                <div class="row">
+                    <span >Email: {{user.email}}</span>
+                </div>
+            </div>
         </li>
         <li>
             <div class="collapsible-header"><i class="fa-sharp fa-solid fa-location-dot prefix"></i>Dirección</div>
-            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            <div class="collapsible-body">
+                <div class="row">
+                    <span >Dirección: {{user.address}}</span>
+                </div>
+            </div>
         </li>
         
         

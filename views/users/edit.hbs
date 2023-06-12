@@ -34,38 +34,23 @@
 
 <div class="row">
     <div class="card device"></div>
-        <form action="/devices" method="POST" class="col s12">
-
+        <form action="/users/{{user._id}}" method="POST" class="col s12">
+            <input type="hidden" name="_method" value="PUT">
             
             
-
-
-            <!--  device photo 
-            <div class="row">
-                <div class="file-field input-field">
-                    <div class="btn">
-                        <span>File</span>
-                        <input type="file">
-                    </div>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text">
-                    </div>
-                </div>
-            </div>
-            -->
 
             <div class="row">
                 <div class="row">
                     <!--  user collegeID -->
                     <div class="input-field col s6">
                         <i class="fa fa-address-card prefix"></i>
-                        <input id="collegeID" name="collegeID" type="number" class="validate">
+                        <input id="collegeID" name="collegeID" type="number" class="validate" value="{{user.collegeID}}">
                         <label for="collegeID" >Número de matrícula</label>
                     </div>
                     <!--  user birthdate -->
                     <div class="input-field col s6">
                         <i class="fa fa-calendar prefix"></i>
-                        <input id="birthdate" name="birthdate" type="text" class="datepicker">
+                        <input id="birthdate" name="birthdate" type="text" class="datepicker" value="{{user.birthdate}}">
                         <label for="birthdate">Fecha de nacimiento</label>
                     </div>
 
@@ -74,22 +59,22 @@
 
             <div class="row">
                 <div class="row">
-                    <!--  user collegeID -->
+                    <!--  user email -->
                     <div class="input-field col s6">
                         <i class="fa-solid fa-envelope prefix"></i>
-                        <input id="email" name="email" type="email" class="validate">
-                        <label for="email" >Correo institucional</label>
+                        <input id="email" name="email" type="email" class="validate" value="{{user.email}}">
+                        <label for="email" >Email</label>
                     </div>
-                    <!--  user birthdate -->
+
                     <!--  user gender -->
                     <div class="input-field col s6">
                         <i class="fa fa-venus-mars prefix"></i>
-                        <select id="gender" name="gender" class="icons">
-                            <option value="" disabled selected>Escogue una opción</option>
+                        <select id="gender" name="gender" class="icons" value="{{user.gender}}">
+                            <option value="{{user.gender}}">{{user.gender}}</option>
                             <option value="Femenino" > Femenino</option>
                             <option value="Masculino" > Masculino</option>
                         </select>
-                        <label for="gender">Elige una opción de género</label>
+                        <label for="gender">Género</label>
                     </div> 
 
                 </div>
@@ -103,7 +88,7 @@
                     <!--  user address -->
                     <div class="input-field col s6">
                         <i class="fa fa-house prefix"></i>
-                        <input id="address" name="address" type="text" class="validate">
+                        <input id="address" name="address" type="text" class="validate" value="{{user.address}}">
                         <label for="address">Dirección</label>
                     </div>
 
@@ -111,36 +96,13 @@
                     <!--  user telephone -->
                     <div class="input-field col s6">
                         <i class="fa fa-phone prefix"></i>
-                        <input id="phone"  name="phone" type="text" class="validate">
-                        <label for="phone">Teléfono o celular</label>
-                    </div>
-
-                    
-
-                </div>
-            </div>
-
-¿
-
-            <div class="row">
-                <div class="row">
-                    <!--  device model -->
-                    <div class="input-field col s6">
-                        <i class="fa fa-building-columns prefix"></i>
-                        <input id="faculty" name="faculty" type="text" class="validate">
-                        <label for="faculty">Facultad</label>
-                    </div> 
-
-
-                    <!--  device model -->
-                    <div class="input-field col s6">
-                        <i class="fa fa-building-columns prefix"></i>
-                        <input id="cademicProgram" name="cademicProgram" type="text" class="validate">
-                        <label for="cademicProgram">Programa académico</label>
+                        <input id="phone"  name="phone" type="text" class="validate" value="{{user.phone}}">
+                        <label for="phone">Teléfono</label>
                     </div>
 
                 </div>
             </div>
+
 
 
 

@@ -46,12 +46,14 @@
 
     <script>
         M.Sidenav.init(document.querySelector('.sidenav'));
-        M.FormSelect.init(document.querySelector('#serie'));
-        M.FormSelect.init(document.querySelector('#date'));
-        M.FormSelect.init(document.querySelector('#type'));
-        M.FormSelect.init(document.querySelector('#color'));
-        M.FormSelect.init(document.querySelector('#march'));
-        M.FormSelect.init(document.querySelector('#model'));
+        /*
+        M.FormSelect.init(document.querySelector('serie'));
+        M.FormSelect.init(document.querySelector('date'));
+        M.FormSelect.init(document.querySelector('type'));
+        M.FormSelect.init(document.querySelector('color'));
+        M.FormSelect.init(document.querySelector('march'));
+        M.FormSelect.init(document.querySelector('model'));
+        */
         CKEDITOR.replace('body', {
             plugins: 'wysiwygarea, toolbar, basicstyles, link'
         });
@@ -78,7 +80,7 @@
         $(document).ready(function(){
              $('.datepicker').datepicker();
          });
-
+        /*
          // autocomplete
         $(document).ready(function(){
             $('input.autocomplete').autocomplete({
@@ -93,6 +95,7 @@
                 },
             });
         });
+        */
 
         // select type 
         $(document).ready(function(){

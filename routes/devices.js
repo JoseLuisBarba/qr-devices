@@ -3,14 +3,32 @@ const router = express.Router();
 const {ensureAuth} = require('../middleware/auth');
 const Device = require('../models/Device');
 const User = require('../models/User');
+const TypeDevice = require('../models/TypeDevice')
 
 // @desc Show add page
 // @route GET /devices/add 
 router.get(
     '/add', 
     ensureAuth,
-    (req, res) => {
-        res.render('devices/add');
+    async (req, res) => {
+
+        try {
+            const typedevices = await TypeDevice.find()
+                .sort()
+                .lean()
+                .exec();
+
+            res.render('devices/add',
+                {
+                    typedevices,
+
+                }
+            );
+        } catch (err) {
+            console.error(err);
+            res.render('error/500');
+        }
+        
     }
 );
 
@@ -109,6 +127,16 @@ router.get(
             )
             .lean()
             .exec();
+
+            const devices = await Device.find({user: req.user.id})
+                .populate('user')
+                .sort({ createdAt: 'desc'})
+                .lean()
+                .exec();
+            const typedevices = await TypeDevice.find()
+                .sort()
+                .lean()
+                .exec();
     
             if (!device) {
                 return res.render('error/404');
@@ -120,6 +148,8 @@ router.get(
                 res.render('devices/edit', 
                     {
                         device,
+                        devices,
+                        typedevices,
                     }
                 );
             }
