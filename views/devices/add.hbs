@@ -1,154 +1,239 @@
-<div class="row">
-    <h4>
-        <i class="fa fa-tablet" aria-hidden="true"></i> Agregar Dispositivo
-    </h4>
-</div>
 
-
-<div class="row">
-
-    <!-- this is form-->
-    <form action="/devices" method="POST" class="col s12">
-
-         <div class="row">
-             <div class="row">
-                <!--This is the serie of device-->
-                <div class="input-field col s12">
-                    <i class="fa fa-address-card prefix"></i>
-                    <input placeholder="Ingrese serie del dispositivo" id="serie" name="serie" type="text" class="validate">
-                    <label for="serie">Serie</label>
-                </div>
-             </div>
-         </div>
-
-
-        <div class="row">
-            <div class="row">
-                <!--This is the date of device-->
-                <div class="input-field col s12">
-                    <i class="fa fa-calendar prefix"></i>
-                    <input id="date" name="date" type="text" class="datepicker">
-                     <label for="date">Fecha de compra</label>
-                </div>
+    <div class="row">
+        <h3>Sección de registro de dispositivo</h3>
+        <div class="card hoverable small">
+          <div class="card-image">
+                <img src="/images/parallax/peces.jpg" alt="">
+          </div>
+          <div class="card-content">
+                <p>En esta sección, puedes registrar los datos de tu dispositivo al pulsar el botón "Registrar dispositivo" y acceder al formulario correspondiente. Recuerda que tienes la opción de agregar todos los detalles que desees sobre tu dispositivo en el área de texto, e incluso puedes adjuntar múltiples fotos del mismo.</p>
+          </div>
+        </div>
+        <div class="col s12">
+            <div class="col 7 s12">
+                <a href="#form" class="btn large waves-effect waves-orange grey-text text-darken-4" style="background-color: #ECF8F9;">Registrar dispositivo</a>
+                <a href="#learn" class="btn large waves-effect waves-green grey-text text-darken-4" style="background-color: #ECF8F9;">Aprender a registrar</a>
+                <a href="/dashboard" class="btn large waves-effect waves-green grey-text text-darken-4" style="background-color: #ECF8F9;">Regresar</a>
             </div>
         </div>
-
-        
-
-
-
-        <div class="row">
-            <div class="row">
-                <!-- This is the color device input -->
-                <div class="input-field col s12">
-                    <i class="fa fa-palette prefix"></i>
-                    <select id="color" name="color" class="icons">
-                        <option value="" disabled selected>Escogue una opción</option>
-
-                        <option value="" disabled selected>Escogue una opción</option>
-                        <option value="negro" > Negro </option>
-                        <option value="blanco" > Blanco</option>
-                        <option value="gris"> Gris</option>
-                        <option value="azul" > Azul</option>
-                        <option value="rosado"> Rosado</option>
-                        <option value="lila" > Lila</option>
-                        <option value="rojo" > Rojo</option>
-                        <option value="dorado" > Dorado</option>
-                        <option value="plateado" > Plateado</option>
-
-                    </select>
-                    <label for="color">Color de dispositivo</label>
-                </div>
-            </div>
-        </div>
+    </div>
+    
+    
+    
+    <div id="index-banner" class="parallax-container">
+        <div class="parallax"><img src="/images/parallax/laptop6.jpg" alt="Unsplashed background img 1" style="transform: translate3d(-50%, 316.178px, 0px); opacity: 1;"></div>
+    </div>
 
 
-        <div class="row">
-            <div class="row">
-                <!-- This is the device type input -->
-                <div class="input-field col s12">
-                    <i class="fa fa-tablet prefix"></i>
-                    <select id="type" name="type" class="icons">
-                        <option value="" disabled selected>Escogue una opción</option>
 
-                        {{#each typedevices}}
-                            <option value="{{name}}" data-icon="{{image}}" class="left" alt=""> {{name}} </option>
-                        {{else}}
-                            <option value="" data-icon="" class="left" alt=""> No hay nada que mostrar </option>
-                        {{/each}}
 
-                    </select>
-                    <label for="type">Tipo de dispositivo</label>
-                </div>
-            </div>
-        </div>
+    <div class="row">
+        <div  class="col s12 center">
+            
+            <div class="section white" id="form">
+                <div class="container">
 
-        <div class="row">
-            <div class="row">
-                <!-- This is the brand type input -->
-                <div class="input-field col s12">
-                    <i class="fa fa-store prefix"></i>
-                    <select id="march" name="march" class="icons">
-                        <option value="" disabled selected>Escogue una opción</option>
-
-                        <option value="Acer" data-icon="/images/march/acer.jpg" class="left" alt=""> Acer </option>
-                        <option value="Apple" data-icon="/images/march/apple.jpg" class="left" alt=""> Apple </option>
-                        <option value="Dell" data-icon="/images/march/dell.jpg" class="left" alt=""> Dell </option>
-                        <option value="HP" data-icon="/images/march/hp.jpg" class="left" alt=""> HP </option>
-                        <option value="Huawei" data-icon="/images/march/huawei.jpg" class="left" alt=""> Huawei </option>
-                        <option value="Iphone" data-icon="/images/march/iphone.jpg" class="left" alt=""> Iphone </option>
-                        <option value="Lenovo" data-icon="/images/march/lenovo.jpg" class="left" alt=""> Lenovo </option>
-                        <option value="LG" data-icon="/images/march/lg.jpg" class="left" alt=""> LG </option>
-                        <option value="Motorola" data-icon="/images/march/motorola.jpg" class="left" alt=""> Motorola </option>
-                        <option value="Samsung" data-icon="/images/march/samsung.jpg" class="left" alt=""> Samsung </option>
-                        <option value="Xiaomi" data-icon="/images/march/xiaomi.jpg" class="left" alt=""> Xiaomi </option>
-                        <option value="Laptop"> Otro </option>
+                    <div class="row">
                         
-                    </select>
-                    <label for="type">Marca de dispositivo</label>
-                    
+                        <div class="card-panel hoverable"> 
+                            <h3 class="grey-text text-darken-4">Formulario de registro de dispositivo</h3>
+                            Este es el formulario para registrar tu dispositivo. Por favor llene todos los campos
+                        </div>
+
+                        <!-- this is form-->
+                        <form action="/devices" method="POST" class="col s12">
+
+                            <!--That's where the image will be..-->
+                            <!--
+                            <div class="row">
+                                <div class="row">
+                                    This is the image  of device
+                                    <div class="input-field col s12">
+                                        <div class="file-field input-field">
+                                            <div class="btn">
+                                                <span>Fotos</span>
+                                                <input type="file" multiple>
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" type="text" placeholder="Sube una o más fotos de tu dispositivo">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            -->
+
+
+                            <div class="row">
+                                <div class="row">
+                                    <!--This is the serie of device-->
+                                    <div class="input-field col s12">
+                                        <i class="fa fa-address-card prefix"></i>
+                                        <input placeholder="Ingrese serie del dispositivo" id="serie" name="serie" type="text" class="validate">
+                                        <label for="serie">Serie</label>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="row">
+                                    <!--This is the date of device-->
+                                    <div class="input-field col s12">
+                                        <i class="fa fa-calendar prefix "></i>
+                                        <input id="date" name="date" type="text" class="datepicker">
+                                        <label for="date">Fecha de compra</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+
+
+
+                            <div class="row">
+                                <div class="row">
+                                    <!-- This is the color device input -->
+                                    <div class="input-field col s12">
+                                        <!-- <i class="fa fa-palette prefix"></i> -->
+                                        <select id="color" name="color" class="icons">
+                                            <option value="" disabled selected>Escogue una opción</option>
+
+                                            <option value="" disabled selected>Escogue una opción</option>
+                                            <option value="negro" > Negro </option>
+                                            <option value="blanco" > Blanco</option>
+                                            <option value="gris"> Gris</option>
+                                            <option value="azul" > Azul</option>
+                                            <option value="rosado"> Rosado</option>
+                                            <option value="lila" > Lila</option>
+                                            <option value="rojo" > Rojo</option>
+                                            <option value="dorado" > Dorado</option>
+                                            <option value="plateado" > Plateado</option>
+
+                                        </select>
+                                        <label for="color">Color de dispositivo</label>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="row">
+                                    <!-- This is the device type input -->
+                                    <div class="input-field col s12">
+                                        <!-- <i class="fa fa-tablet prefix"></i>-->
+                                        <select id="type" name="type" class="icons">
+                                            <option value="" disabled selected>Escogue una opción</option>
+
+                                            {{#each typedevices}}
+                                                <option value="{{name}}" data-icon="{{image}}" class="left" alt=""> {{name}} </option>
+                                            {{else}}
+                                                <option value="" data-icon="" class="left" alt=""> No hay nada que mostrar </option>
+                                            {{/each}}
+
+                                        </select>
+                                        <label for="type">Tipo de dispositivo</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="row">
+                                    <!-- This is the brand type input -->
+                                    <div class="input-field col s12">
+                                        <!-- <i class="fa fa-store prefix"></i> -->
+                                        <select id="march" name="march" class="icons">
+                                            <option value="" disabled selected>Escogue una opción</option>
+
+                                            <option value="Acer" data-icon="/images/march/acer.jpg" class="left" alt=""> Acer </option>
+                                            <option value="Apple" data-icon="/images/march/apple.jpg" class="left" alt=""> Apple </option>
+                                            <option value="Dell" data-icon="/images/march/dell.jpg" class="left" alt=""> Dell </option>
+                                            <option value="HP" data-icon="/images/march/hp.jpg" class="left" alt=""> HP </option>
+                                            <option value="Huawei" data-icon="/images/march/huawei.jpg" class="left" alt=""> Huawei </option>
+                                            <option value="Iphone" data-icon="/images/march/iphone.jpg" class="left" alt=""> Iphone </option>
+                                            <option value="Lenovo" data-icon="/images/march/lenovo.jpg" class="left" alt=""> Lenovo </option>
+                                            <option value="LG" data-icon="/images/march/lg.jpg" class="left" alt=""> LG </option>
+                                            <option value="Motorola" data-icon="/images/march/motorola.jpg" class="left" alt=""> Motorola </option>
+                                            <option value="Samsung" data-icon="/images/march/samsung.jpg" class="left" alt=""> Samsung </option>
+                                            <option value="Xiaomi" data-icon="/images/march/xiaomi.jpg" class="left" alt=""> Xiaomi </option>
+                                            <option value="Laptop"> Otro </option>
+                                            
+                                        </select>
+                                        <label for="type">Marca de dispositivo</label>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+
+                            <div class="row">
+                                <div class="row">
+                                    <!-- This is the user model input -->
+                                    <div class="input-field col s12">
+                                        <i class="fa fa-microchip prefix"></i>
+                                        <input id="model" name="model" type="text" class="validate">
+                                        <label for="model">Modelo</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+
+                            <!-- This is body details input-->
+                            <div class="row">
+                                <div class="input-field">
+                                    <h6>Aquí puedes detallar más</h6>
+                                    <textarea id="body" name="body"></textarea>
+                                </div>
+                            </div>      
+
+                            <!-- This is submit form-->
+                            <div class="row">
+                                <input type="submit" value="Guardar" class="btn">
+                                <a href="/dashboard" class="btn orange">Cancelar</a>
+                            </div>
+                            
+
+                        </form>
+                    </div>
+
                 </div>
             </div>
         </div>
-        
+    </div>
+
+    <div class="row">
+        <div  class="parallax-container">
+            <div class="parallax"><img src="/images/parallax/laptop9.jpg" alt="Unsplashed background img 2" style="transform: translate3d(-50%, 316.178px, 0px); opacity: 1;"></div>
+        </div>
+    </div>
 
 
-        <div class="row">
-            <div class="row">
-                <!-- This is the user model input -->
-                <div class="input-field col s12">
-                    <i class="fa fa-microchip prefix"></i>
-                    <input id="model" name="model" type="text" class="validate">
-                    <label for="model">Modelo</label>
-                </div>
+    <div class="row">
+        <div class="section white" id="learn">
+            
+            <div class="card-panel hoverable"> 
+                <h3 class="grey-text text-darken-4">Aprender a registrar mi dispositivo</h3>
+                El siguiente video le indicará como registrar tu dispositivo.</div>
+            <div class="video-container">
+                <iframe width="853" height="480" src="//www.youtube.com/embed/Q8TXgCzxEnw?rel=0" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
+    </div>
 
-        
 
-        <!-- This is body details input-->
-        <div class="row">
-            <div class="input-field">
-                <h6>Aquí puedes detallar más</h6>
-                <textarea id="body" name="body"></textarea>
-            </div>
-        </div>      
-
-        <!-- This is submit form-->
-        <div class="row">
-            <input type="submit" value="Guardar" class="btn">
-            <a href="/dashboard" class="btn orange">Cancelar</a>
+    <div class="row">
+        <div  class="parallax-container">
+            <div class="parallax"><img src="/images/parallax/tablet2.jpg" alt="Unsplashed background img 3" style="transform: translate3d(-50%, 316.178px, 0px); opacity: 1;"></div>
         </div>
+    </div>
 
+<script>
 
-    </form>
-</div>
-
-
-
-
-
-
-
-
+    $(document).ready(function(){
+        $('.parallax').parallax();
+    });
+        
+</script>
 
