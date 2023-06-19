@@ -41,27 +41,18 @@
                         </div>
 
                         <!-- this is form-->
-                        <form action="/devices" method="POST" class="col s12">
+                        <form action="/devices" method="POST" class="col s12" enctype="multipart/form-data">
 
                             <!--That's where the image will be..-->
-                            <!--
+                     
                             <div class="row">
                                 <div class="row">
-                                    This is the image  of device
                                     <div class="input-field col s12">
-                                        <div class="file-field input-field">
-                                            <div class="btn">
-                                                <span>Fotos</span>
-                                                <input type="file" multiple>
-                                            </div>
-                                            <div class="file-path-wrapper">
-                                                <input class="file-path validate" type="text" placeholder="Sube una o más fotos de tu dispositivo">
-                                            </div>
-                                        </div>
+                                        <input type="file" name="image">
                                     </div>
                                 </div>
                             </div>
-                            -->
+                            
 
 
                             <div class="row">
@@ -236,4 +227,3 @@
     });
         
 </script>
-

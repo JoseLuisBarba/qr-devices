@@ -3,7 +3,43 @@ const router = express.Router();
 const {ensureAuth} = require('../middleware/auth');
 const Device = require('../models/Device');
 const User = require('../models/User');
-const TypeDevice = require('../models/TypeDevice')
+const TypeDevice = require('../models/TypeDevice');
+const { v4: uuidv4 } = require('uuid');
+const path = require('path');
+const multer = require('multer');
+const sharp = require('sharp');
+
+
+// Destination directory and desired size
+const uploadDirectory = path.join(__dirname, '../public/uploads/devices');
+const targetSize = 520;
+
+
+// middlewares of multer and sharp
+const storage = multer.diskStorage({ //correct test
+    destination: uploadDirectory,
+    filename:  (req, file, cb) => {
+        const fileName =  uuidv4() + path.extname(file.originalname);
+        cb(null, fileName);
+        req.body.image = fileName;
+    }
+});
+
+const uploadImage = multer({ //correct test
+    storage,
+    fileFilter: function (req, file, cb){
+        var filetypes = /jpeg|jpg|png/;
+        var mimetype = filetypes.test(file.mimetype);
+        var extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+        if (mimetype && extname) {
+            return cb(null, true);
+        }
+        cb("Error: File upload only supports the following filetypes - " + filetypes);
+    },
+    limits: {fileSize: 3000000}
+}).single('image');
+
+
 
 // @desc Show add page
 // @route GET /devices/add 
@@ -37,11 +73,26 @@ router.get(
 router.post(
     '/', 
     ensureAuth,
+    uploadImage,
     async (req, res) => {
         try {
             
             req.body.user = req.user.id;
+            // Original image path
+            const imagePath = path.join(uploadDirectory, req.body.image);
+            // Generate a unique filename for the resized image
+            const resizedFileName = `resized_${uuidv4()}.jpg`;
+            // Resized image path
+            const resizedImagePath = path.join(uploadDirectory, resizedFileName);
+
+
+            // Resize image to 300x300
+            await sharp(imagePath)
+                .resize(targetSize,targetSize)
+                .toFile(resizedImagePath); // Overwrites the original image with the new size
             
+            req.body.image = path.basename(resizedImagePath);
+
             await Device.create(req.body);
             console.log(req.body);
             res.redirect('/dashboard');

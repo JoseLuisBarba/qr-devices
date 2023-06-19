@@ -9,8 +9,8 @@ const passport = require('passport');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const connectDB = require('./config/db');
-const multer = require('multer');
-const uuid = require('uuid');
+
+
 
 
 
@@ -91,23 +91,6 @@ app.use(session({
 app.use(passport.initialize());
 
 app.use(passport.session());
-
-
-// Middlewares
-const storage = multer.diskStorage(
-    {
-        destination: path.join(__dirname, 'public/img/uploads'),
-        filename: (req, file, cb, filename) => {
-            cb(null, uuid() + path.extname(file.originalname));
-        }
-    }
-);
-
-app.use(multer(
-    {
-        storage: storage,
-    }
-).single('image'));
 
 
 // Set global var

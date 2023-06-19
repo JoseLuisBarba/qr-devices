@@ -4,6 +4,18 @@
             <small>{{{editIcon device.user user device._id false}}}</small>
         </h3>
         <div class="card device">
+            <div class="carousel">
+                <a class="carousel-item" href="#one!"><img src="/uploads/devices/{{device.image}}" alt=""></a>
+                <a class="carousel-item" href="#two!"><img src="/uploads/devices/{{device.image}}" alt=""></a>
+                <a class="carousel-item" href="#three!"><img src="/uploads/devices/{{device.image}}" alt=""></a>
+                <a class="carousel-item" href="#four!"><img src="/uploads/devices/{{device.image}}" alt=""></a>
+                <a class="carousel-item" href="#five!"><img src="/uploads/devices/{{device.image}}" alt=""></a>
+            </div>
+            <a href="#" class="btn large waves-effect waves-orange grey-text text-darken-4" style="background-color: #ECF8F9;">Ver QR</a>
+            <a href="#" class="btn large waves-effect waves-green grey-text text-darken-4" style="background-color: #ECF8F9;">Generar nuevo QR</a>
+            <a href="/dashboard" class="btn large waves-effect waves-green grey-text text-darken-4" style="background-color: #ECF8F9;">Regresar</a>
+        </div>
+        <div class="card device">
             <div class="card-content">
                 <span class="card-title">{{formatDate date 'MMMM Do YYYY, h:mm:ss a'}}</span>
                 <span class="card-title">Caracteristicas:</span>
@@ -80,5 +92,8 @@
         </div>
     </div>
 </div>
+
+
+
 
 
