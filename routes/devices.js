@@ -4,6 +4,7 @@ const {ensureAuth} = require('../middleware/auth');
 const Device = require('../models/Device');
 const User = require('../models/User');
 const TypeDevice = require('../models/TypeDevice');
+const Image = require('../models/Image');
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 const multer = require('multer');
@@ -68,40 +69,6 @@ router.get(
     }
 );
 
-// @desc Process add form
-// @route POST /devices 
-router.post(
-    '/', 
-    ensureAuth,
-    uploadImage,
-    async (req, res) => {
-        try {
-            
-            req.body.user = req.user.id;
-            // Original image path
-            const imagePath = path.join(uploadDirectory, req.body.image);
-            // Generate a unique filename for the resized image
-            const resizedFileName = `resized_${uuidv4()}.jpg`;
-            // Resized image path
-            const resizedImagePath = path.join(uploadDirectory, resizedFileName);
-
-
-            // Resize image to 300x300
-            await sharp(imagePath)
-                .resize(targetSize,targetSize)
-                .toFile(resizedImagePath); // Overwrites the original image with the new size
-            
-            req.body.image = path.basename(resizedImagePath);
-
-            await Device.create(req.body);
-            console.log(req.body);
-            res.redirect('/dashboard');
-        } catch (err) {
-            console.error(err);
-            res.render('error/500');
-        }
-    }
-);
 
 // @desc Show all stories
 // @route GET /devices
@@ -147,10 +114,46 @@ router.get(
                 .populate('user')    
                 .lean()
                 .exec();
+            const images = await Image.find({device: device._id})
+                .populate('device')
+                .lean()
+                .exec();
+
+            console.log(images);
+
             if (!device){
                 return res.render('error/404');
             }
             res.render('devices/show',
+                {
+                    device,
+                    images,
+                }
+            );
+        } catch (err) {
+            console.log(err);
+            res.render('error/404');
+        }
+    }
+);
+
+
+// @desc Process imageupload form
+// @route GET /devices/image/upload/:id 
+router.get(
+    '/image/upload/:id', 
+    ensureAuth,
+    async (req, res) => {
+        try {
+            let device = await Device.findById(req.params.id)
+                .populate('user')    
+                .lean()
+                .exec();
+
+            if (!device){
+                return res.render('error/404');
+            }
+            res.render('devices/image',
                 {
                     device,
                 }
@@ -162,6 +165,99 @@ router.get(
     }
 );
 
+// @desc Process imageupload form
+// @route POST /devices/:id 
+router.post(
+    '/:id', 
+    ensureAuth,
+    uploadImage,
+    async (req, res) => {
+        try {
+            
+            let device = await Device.findById(req.params.id)
+                .populate('user')    
+                .lean()
+                .exec();
+
+            if (!device){
+                console.log(device);
+                return res.render('error/404');
+            }
+
+
+            // Original image path
+            const imagePath = path.join(uploadDirectory, req.body.image);
+            // Generate a unique filename for the resized image
+            const resizedFileName = `resized_${uuidv4()}.jpg`;
+            // Resized image path
+            const resizedImagePath = path.join(uploadDirectory, resizedFileName);
+            // Resize image to 300x300
+            await sharp(imagePath)
+                .resize(targetSize,targetSize)
+                .toFile(resizedImagePath); // Overwrites the original image with the new size
+
+
+            await Image.create({
+                image: path.basename(resizedImagePath),
+                device: device._id,
+                body: req.body.body
+            });
+
+
+            const images = await Image.find({device: device._id})
+                .populate('device')
+                .lean()
+                .exec();
+            
+            res.render('devices/show',
+                {
+                    device,
+                    images,
+                }
+            );
+        } catch (err) {
+            console.error(err);
+            res.render('error/500');
+        }
+    }
+);
+
+
+
+// @desc Process add form
+// @route POST /devices 
+router.post(
+    '/', 
+    ensureAuth,
+    uploadImage,
+    async (req, res) => {
+        try {
+            
+            req.body.user = req.user.id;
+            // Original image path
+            const imagePath = path.join(uploadDirectory, req.body.image);
+            // Generate a unique filename for the resized image
+            const resizedFileName = `resized_${uuidv4()}.jpg`;
+            // Resized image path
+            const resizedImagePath = path.join(uploadDirectory, resizedFileName);
+
+
+            // Resize image to 300x300
+            await sharp(imagePath)
+                .resize(targetSize,targetSize)
+                .toFile(resizedImagePath); // Overwrites the original image with the new size
+            
+            req.body.image = path.basename(resizedImagePath);
+
+            await Device.create(req.body);
+            console.log(req.body);
+            res.redirect('/dashboard');
+        } catch (err) {
+            console.error(err);
+            res.render('error/500');
+        }
+    }
+);
 
 // @desc Show edit page
 // @route GET /devices/edit/:id 

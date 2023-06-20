@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-
 const TypeDeviceSchema = new mongoose.Schema(
     {
         name: {
