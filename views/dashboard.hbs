@@ -1,51 +1,165 @@
-<h6>Panel principal</h6>
 <h3>Bienvenido {{ name}} </h3>
-<p1>Aquí registrarás tus dispositivos.</p1>
 
 
+    {{#if devices}}
+        <p>Mis dispositivos.</p>
 
-{{#if devices}}
-    <table  class="striped">
-        <thead>
-            <tr>
-                <th>Serie</th>
-                <th>Fecha de compra</th>
-                <th>Fecha de registro</th>
-                <th>Tipo</th>
-                <th>Marca</th>
-                <th>Color</th>
-                <th>Modelo</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each devices}}
+        <!--only desktop-->
+
+        <table  class="display striped highlight hide-on-med-and-down" id="devices_table" name="devices_table">
+            <thead>
                 <tr>
-                    <td> <a href="/devices/{{_id}}">{{serie}}</a></td>
-                    <td>{{date}}</td>
-                    <td>{{formatDate createdAt 'MMMM Do YYYY, h:mm:ss a'}}</td>
-                    <td>{{type}}</td>
-                    <td>{{color}}</td>
-                    <td>{{march}}</td>
-                    <td>{{model}}</td>
-                    <td>
-
-                        <a href="/devices/edit/{{_id}}" class="btn btn-float">
-                            <i class="fas fa-edit"></i>
-                        </a>
-
-                        <form action="/devices/{{_id}}" method="POST" id="delete-form">
-                            <input type="hidden" name="_method" value="DELETE">
-                            <button type="submit" class="btn red">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </form>
-
-
-                    </td>
+                    <th>Serie </th>
+                    <th>Fecha de compra </th>
+                    <th>Fecha de registro</th>
+                    <th>Tipo</th>
+                    <th>Marca</th>
+                    <th>Color</th>
+                    <th>Modelo</th>
+                    <th>Acción</th>
                 </tr>
-            {{/each}}
-        </tbody>
-    </table>
-{{else}}
-    <p>Tu no has registrado ningún dispositivo.</p>
-{{/if}}
+                <tr id="filter_row">
+                    <th>
+                        <input type="text" placeholder="Filtrar serie">
+                    </th>
+                    <th>
+                        <input type="text" placeholder="Filtrar Fecha de compra">
+                    </th>
+                    <th>
+                        <input type="text" placeholder="Filtrar fecha de registro">
+                    </th>
+                    <th>
+                        <input type="text" placeholder="Filtrar tipo">
+                    </th>
+                    <th>
+                        <input type="text" placeholder="Filtrar marca">
+                    </th>
+                    <th>
+                        <input type="text" placeholder="Filtrar color">
+                    </th>
+                    <th>
+                        <input type="text" placeholder="Filtrar modelo">
+                    </th>
+                    <th>
+                        <input type="text" placeholder="Filtrar acción">
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                {{#each devices}}
+                    <tr>
+                        <td> <a href="/devices/{{_id}}">{{serie}}</a> </td>
+                        <td>{{date}}</td>
+                        <td>{{formatDate createdAt 'MMMM Do YYYY, h:mm:ss a'}}</td>
+                        <td>{{type}}</td>
+                        <td>{{march}}</td>
+                        <td>{{color}}</td>
+                        <td>{{model}}</td>
+                        <td>
+
+                            <a href="/devices/edit/{{_id}}" class="btn btn-float">
+                                <i class="fas fa-edit"></i>
+                            </a>
+
+                            <form action="/devices/{{_id}}" method="POST" id="delete-form">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn red">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+
+
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Serie</th>
+                    <th>Fecha de compra</th>
+                    <th>Fecha de registro</th>
+                    <th>Tipo</th>
+                    <th>Marca</th>
+                    <th>Color</th>
+                    <th>Modelo</th>
+                    <th>Acción</th>
+                </tr>
+            </tfoot>
+        </table>
+
+        <!--only desktop-->
+        <!--only mobile-->
+        <table  class="display striped highlight responsive-table hide-on-large-only" id="devices_table_mobile" name="devices_table_mobile">
+            <thead>
+                <tr>
+                    <th>Serie </th>
+                    <th>Fecha de compra </th>
+                    <th>Fecha de registro</th>
+                    <th>Tipo</th>
+                    <th>Marca</th>
+                    <th>Color</th>
+                    <th>Modelo</th>
+                    <th>Acción</th>
+                </tr>
+                <tr id="filter_row">
+                    <th>
+                        <input type="text" placeholder="Filtrar serie">
+                    </th>
+                    <th>
+                        <input type="text" placeholder="Filtrar Fecha de compra">
+                    </th>
+                    <th>
+                        <input type="text" placeholder="Filtrar fecha de registro">
+                    </th>
+                    <th>
+                        <input type="text" placeholder="Filtrar tipo">
+                    </th>
+                    <th>
+                        <input type="text" placeholder="Filtrar marca">
+                    </th>
+                    <th>
+                        <input type="text" placeholder="Filtrar color">
+                    </th>
+                    <th>
+                        <input type="text" placeholder="Filtrar modelo">
+                    </th>
+                    <th>
+                        <input type="text" placeholder="Filtrar acción">
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                {{#each devices}}
+                    <tr>
+                        <td> <a href="/devices/{{_id}}">{{serie}}</a> </td>
+                        <td>{{date}}</td>
+                        <td>{{formatDate createdAt 'MMMM Do YYYY, h:mm:ss a'}}</td>
+                        <td>{{type}}</td>
+                        <td>{{march}}</td>
+                        <td>{{color}}</td>
+                        <td>{{model}}</td>
+                        <td>
+
+                            <a href="/devices/edit/{{_id}}" class="btn btn-float">
+                                <i class="fas fa-edit"></i>
+                            </a>
+
+                            <form action="/devices/{{_id}}" method="POST" id="delete-form">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn red">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+
+
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <!--only mobile-->
+    {{else}}
+        <p>Tu no has registrado ningún dispositivo.</p>
+    {{/if}}
+
+

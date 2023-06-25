@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Compiled style.css CSS -->
     <link rel="stylesheet" href="/css/style.css">
+    <!-- Filter -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
     <title>QR Devices</title>
 </head>
@@ -41,22 +44,16 @@
     {{> _footer}}
 
     <!-- Compiled and minified JavaScript -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.21.0/ckeditor.js" integrity="sha512-ff67djVavIxfsnP13CZtuHqf7VyX62ZAObYle+JlObWZvS4/VQkNVaFBOO6eyx2cum8WtiZ0pqyxLCQKC7bjcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/10.32.0/js/jquery.fileupload.min.js" integrity="sha512-P7EUiLYW7QUrhYrLgaJ++ok2j2I7Pu0UgGnrpLowujPZicu7mIR0V/Trq+7kl/0nEkp6yNGh8eFJY1JUv3dkPA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js" integrity="sha512-/6TZODGjYL7M8qb7P6SflJB/nTGE79ed1RfJk3dfm/Ib6JwCT4+tOfrrseEHhxkIhwG8jCl+io6eaiWLS/UX1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+    
     <script>
         M.Sidenav.init(document.querySelector('.sidenav'));
-        /*
-        M.FormSelect.init(document.querySelector('serie'));
-        M.FormSelect.init(document.querySelector('date'));
-        M.FormSelect.init(document.querySelector('type'));
-        M.FormSelect.init(document.querySelector('color'));
-        M.FormSelect.init(document.querySelector('march'));
-        M.FormSelect.init(document.querySelector('model'));
-        */
+
         CKEDITOR.replace('body', {
             plugins: 'wysiwygarea, toolbar, basicstyles, link'
         });
@@ -68,9 +65,6 @@
             var instances = M.Sidenav.init(elems, options);
         });
 
-        // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
-        // var collapsibleElem = document.querySelector('.collapsible');
-        // var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
 
         // Or with jQuery
 
@@ -83,22 +77,7 @@
         $(document).ready(function(){
              $('.datepicker').datepicker();
          });
-        /*
-         // autocomplete
-        $(document).ready(function(){
-            $('input.autocomplete').autocomplete({
-                data: {
-                    "black": null,
-                    "gray": null,
-                    "white": null,
-                    "blue": null,
-                    "gold": null,
-                    "red": null,
-                    "green": null,
-                },
-            });
-        });
-        */
+
 
         // select type 
         $(document).ready(function(){
@@ -132,6 +111,84 @@
         $(document).ready(function(){
             $('.tooltipped').tooltip();
         });
+            
+        var serieInput = document.querySelector("#filter_row input[placeholder='Filtrar serie']");
+        var fechaCompraInput = document.querySelector("#filter_row input[placeholder='Filtrar Fecha de compra']");
+        var fechaRegistroInput = document.querySelector("#filter_row input[placeholder='Filtrar fecha de registro']");
+        var tipoInput = document.querySelector("#filter_row input[placeholder='Filtrar tipo']");
+        var marcaInput = document.querySelector("#filter_row input[placeholder='Filtrar marca']");
+        var colorInput = document.querySelector("#filter_row input[placeholder='Filtrar color']");
+        var modeloInput = document.querySelector("#filter_row input[placeholder='Filtrar modelo']");
+        var accionInput = document.querySelector("#filter_row input[placeholder='Filtrar acción']");
+
+        // Agregar eventos de escucha para los campos de filtro
+        serieInput.addEventListener('input', filterTable);
+        fechaCompraInput.addEventListener('input', filterTable);
+        fechaRegistroInput.addEventListener('input', filterTable);
+        tipoInput.addEventListener('input', filterTable);
+        marcaInput.addEventListener('input', filterTable);
+        colorInput.addEventListener('input', filterTable);
+        modeloInput.addEventListener('input', filterTable);
+        accionInput.addEventListener('input', filterTable);
+
+        // Función para filtrar la tabla
+        function filterTable() {
+            var filterSerie = serieInput.value.toUpperCase();
+            var filterFechaCompra = fechaCompraInput.value.toUpperCase();
+            var filterFechaRegistro = fechaRegistroInput.value.toUpperCase();
+            var filterTipo = tipoInput.value.toUpperCase();
+            var filterMarca = marcaInput.value.toUpperCase();
+            var filterColor = colorInput.value.toUpperCase();
+            var filterModelo = modeloInput.value.toUpperCase();
+            var filterAccion = accionInput.value.toUpperCase();
+
+            var table = document.getElementById("devices_table");
+            var tbody = table.getElementsByTagName("tbody")[0];
+            var rows = tbody.getElementsByTagName("tr");
+
+            for (var i = 0; i < rows.length; i++) {
+                var serie = rows[i].getElementsByTagName("td")[0].textContent.toUpperCase();
+                var fechaCompra = rows[i].getElementsByTagName("td")[1].textContent.toUpperCase();
+                var fechaRegistro = rows[i].getElementsByTagName("td")[2].textContent.toUpperCase();
+                var tipo = rows[i].getElementsByTagName("td")[3].textContent.toUpperCase();
+                var marca = rows[i].getElementsByTagName("td")[4].textContent.toUpperCase();
+                var color = rows[i].getElementsByTagName("td")[5].textContent.toUpperCase();
+                var modelo = rows[i].getElementsByTagName("td")[6].textContent.toUpperCase();
+                var accion = rows[i].getElementsByTagName("td")[7].textContent.toUpperCase();
+
+                if (serie.indexOf(filterSerie) > -1 &&
+                    fechaCompra.indexOf(filterFechaCompra) > -1 &&
+                    fechaRegistro.indexOf(filterFechaRegistro) > -1 &&
+                    tipo.indexOf(filterTipo) > -1 &&
+                    marca.indexOf(filterMarca) > -1 &&
+                    color.indexOf(filterColor) > -1 &&
+                    modelo.indexOf(filterModelo) > -1 &&
+                    accion.indexOf(filterAccion) > -1) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+        }
+
+
+
+        // Modal Trigger 
+        $(document).ready(function(){
+            $('.modal').modal();
+        });
+        $(document).ready(function(){
+            $('.materialboxed').materialbox();
+        });
+        $(document).ready(function(){
+            $('.slider').slider();
+        });
+        $(document).ready(function(){
+            $('.materialboxed').materialbox();
+        });
+     
+
+
 
     </script>
 

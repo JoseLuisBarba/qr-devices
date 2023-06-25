@@ -9,6 +9,8 @@ const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 const multer = require('multer');
 const sharp = require('sharp');
+const fs = require('fs');
+const qrcode = require('qrcode');
 
 
 // Destination directory and desired size
@@ -70,7 +72,7 @@ router.get(
 );
 
 
-// @desc Show all stories
+// @desc Show all devices
 // @route GET /devices
 router.get(
     '/', 
@@ -101,6 +103,7 @@ router.get(
         }
     }
 );
+
 
 
 // @desc Show single device
@@ -164,6 +167,77 @@ router.get(
         }
     }
 );
+
+// @desc Process qr show
+// @route GET /devices/image/myqr/:id 
+router.get(
+    '/image/myqr/:id', 
+    ensureAuth,
+    async (req, res) => {
+        try {
+            let device = await Device.findById(req.params.id)
+                .populate('user')    
+                .lean()
+                .exec();
+
+            if (!device){
+                return res.render('error/404');
+            }
+            res.render('devices/qr',
+                {
+                    device,
+                }
+            );
+        } catch (err) {
+            console.log(err);
+            res.render('error/404');
+        }
+    }
+);
+// @desc Process qr show
+// @route GET /devices/image/myqr/:id 
+router.put(
+    '/image/myqr/:id', 
+    ensureAuth,
+    async (req, res) => {
+        try {
+            let device = await Device.findById(req.params.id).lean().exec();
+            if (!device) {
+                return res.render('error/404');
+            }
+
+            if (device.user != req.user.id) {
+                res.redirect('/devices');
+            } else {
+                const urlDevice = '//localhost:3000/qrdata/'+ device._id;
+                const QR = await qrcode.toDataURL(urlDevice);
+                
+                device = await Device.findOneAndUpdate(
+                    {
+                        _id: req.params.id,
+                    },
+                    {
+                        qrcode: QR,
+                    },
+                    {
+                        new: true,
+                        runValidators: true,
+                    }
+                );
+                res.redirect('/dashboard',
+                    {
+                        device,
+                    }
+                );
+            }
+
+        } catch (err) {
+            console.log(err);
+            return res.render('error/500');
+        }
+    }
+);
+
 
 // @desc Process imageupload form
 // @route POST /devices/:id 

@@ -39,3 +39,13 @@ display:table-cell;
 .search-form {
 margin: 70px 0;
 }
+
+.old {
+    color: red;
+}
+.middleaged {
+    color: blue;
+}
+.young {
+    color: green;
+}
