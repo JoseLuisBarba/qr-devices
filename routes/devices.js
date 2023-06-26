@@ -195,9 +195,9 @@ router.get(
     }
 );
 // @desc Process qr show
-// @route GET /devices/image/myqr/:id 
+// @route PUT /devices/:id
 router.put(
-    '/image/myqr/:id', 
+    '/:id', 
     ensureAuth,
     async (req, res) => {
         try {
@@ -207,7 +207,7 @@ router.put(
             }
 
             if (device.user != req.user.id) {
-                res.redirect('/devices');
+                res.redirect('error/404');
             } else {
                 const urlDevice = '//localhost:3000/qrdata/'+ device._id;
                 const QR = await qrcode.toDataURL(urlDevice);
@@ -224,11 +224,7 @@ router.put(
                         runValidators: true,
                     }
                 );
-                res.redirect('/dashboard',
-                    {
-                        device,
-                    }
-                );
+                res.redirect('/dashboard');
             }
 
         } catch (err) {

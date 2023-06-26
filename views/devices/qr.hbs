@@ -21,7 +21,7 @@
             <div class="col s12 m8">
                 <div class="center">
                     <a href="{{device.qrcode}}" class="waves-effect waves-light btn-small large" download="qr_code_{{device.serie}}.png"><i class="fa fa-cloud-arrow-down right"></i>Descargar QR</a>
-                    <form action="/devices/image/myqr/{{device._id}}" method="POST" class="btn waves-effect waves-light btn-small large white-text">
+                    <form action="/devices/{{device._id}}" method="POST" class="btn waves-effect waves-light btn-small large white-text">
                         <!--Update method-->
                         <input type="hidden" name="_method" value="PUT" >
                         <input type="submit" value="Generar nuevo QR"  class="white-text"> <i class="fa fa-qrcode right"></i>
@@ -42,7 +42,7 @@
             <div class="col s12 m8">
                 <div class="center">
                     <a href="/uploads/devices/{{device.image}}" class="waves-effect waves-light btn-small large" download><i class="fa fa-cloud-arrow-down right"></i>Descargar QR</a>
-                    <form action="/devices/image/myqr/{{device._id}}" method="POST" class="btn waves-effect waves-light btn-small large white-text">
+                    <form action="/devices/{{device._id}}" method="POST" class="btn waves-effect waves-light btn-small large white-text">
                         <!--Update method-->
                         <input type="hidden" name="_method" value="PUT" >
                         <input type="submit" value="Generar nuevo QR"  class="white-text"> <i class="fa fa-qrcode right"></i>
