@@ -195,48 +195,7 @@ router.get(
         }
     }
 );
-// @desc Process qr show
-// @route PUT /devices/:id
-router.put(
-    '/:id', 
-    ensureAuth,
-    async (req, res) => {
-        try {
-            let device = await Device.findById(req.params.id).lean().exec();
-            let urlbase =  await urlsystem.findOne({name: 'qrdevice'}).lean().exec(); 
-            console.log(urlbase);
-            if (!device) {
-                return res.render('error/404');
-            }
 
-            if (device.user != req.user.id) {
-                res.redirect('error/404');
-            } else {
-                // const urlDevice = '//localhost:3000/qrdata/'+ device._id;
-                const urlDevice = urlbase.url +  device._id;
-                const QR = await qrcode.toDataURL(urlDevice);
-                
-                device = await Device.findOneAndUpdate(
-                    {
-                        _id: req.params.id,
-                    },
-                    {
-                        qrcode: QR,
-                    },
-                    {
-                        new: true,
-                        runValidators: true,
-                    }
-                );
-                res.redirect('/dashboard');
-            }
-
-        } catch (err) {
-            console.log(err);
-            return res.render('error/500');
-        }
-    }
-);
 
 
 // @desc Process imageupload form
@@ -422,7 +381,7 @@ router.put(
 
 
 // @desc Delete device
-// @route DELETE /devices/:id
+// @route DELETE /devices//:id
 router.delete(
     '/:id', 
     ensureAuth,
@@ -472,6 +431,47 @@ router.get(
 
 
 
+// @desc Process qr show
+// @route PUT /devices/image/myqr/successful/:id 
+router.put(
+    '/image/myqr/successful/:id', 
+    ensureAuth,
+    async (req, res) => {
+        try {
+            let device = await Device.findById(req.params.id).lean().exec();
+            let urlbase =  await urlsystem.findOne({name: 'qrdevice'}).lean().exec(); 
+            console.log(urlbase);
+            if (!device) {
+                return res.render('error/404');
+            }
 
+            if (device.user != req.user.id) {
+                res.redirect('error/404');
+            } else {
+                // const urlDevice = '//localhost:3000/qrdata/'+ device._id;
+                const urlDevice = urlbase.url +  device._id;
+                const QR = await qrcode.toDataURL(urlDevice);
+                
+                device = await Device.findOneAndUpdate(
+                    {
+                        _id: req.params.id,
+                    },
+                    {
+                        qrcode: QR,
+                    },
+                    {
+                        new: true,
+                        runValidators: true,
+                    }
+                );
+                res.render('devices/qrsuccessful');
+            }
+
+        } catch (err) {
+            console.log(err);
+            return res.render('error/500');
+        }
+    }
+);
 
 module.exports = router;
