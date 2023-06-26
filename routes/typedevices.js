@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {ensureAuth} = require('../middleware/auth');
 const TypeDevice = require('../models/TypeDevice');
+const urlsystem = require('../models/urlsystem');
 
 
 // @desc Show typedevice

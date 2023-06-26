@@ -5,6 +5,7 @@ const Device = require('../models/Device');
 const User = require('../models/User');
 const TypeDevice = require('../models/TypeDevice');
 const Image = require('../models/Image');
+const urlsystem = require('../models/urlsystem');
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 const multer = require('multer');
@@ -202,6 +203,8 @@ router.put(
     async (req, res) => {
         try {
             let device = await Device.findById(req.params.id).lean().exec();
+            let urlbase =  await urlsystem.findOne({name: 'qrdevice'}).lean().exec(); 
+            console.log(urlbase);
             if (!device) {
                 return res.render('error/404');
             }
@@ -209,7 +212,8 @@ router.put(
             if (device.user != req.user.id) {
                 res.redirect('error/404');
             } else {
-                const urlDevice = '//localhost:3000/qrdata/'+ device._id;
+                // const urlDevice = '//localhost:3000/qrdata/'+ device._id;
+                const urlDevice = urlbase.url +  device._id;
                 const QR = await qrcode.toDataURL(urlDevice);
                 
                 device = await Device.findOneAndUpdate(

@@ -4,9 +4,12 @@ const urlsystemSchema = new mongoose.Schema(
     {
         name: {
             type: String,
+            unique : true,
         },
+        
         url: {
             type: String,
+            unique : true,
         },
        
     }
