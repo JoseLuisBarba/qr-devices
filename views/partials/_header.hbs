@@ -1,9 +1,6 @@
+<!--His the sidenav of user system-->
+<nav class="blue darken-4"> 
 
-
-
-
-
-<nav class="light-blue darken-4"> 
     <a href="/dashboard" class="brand-logo center white-text text-darken-4">QR Devices</a>
     <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="fas fa-bars"></i></a>
     
@@ -12,24 +9,22 @@
             <li>
                 <div class="user-view">
                     <div class="background">
-                        <img src="https://th.bing.com/th/id/R.e951c34894188bb181b2a95bd866eb78?rik=PqU7pRL4tZYamA&pid=ImgRaw&r=0" style="max-width:600px">
+                        <img src="/images/parallax/pez.jpg" style="max-width:300px">
                     </div>
-                    <img  class="circle" src="{{user.image}}" alt="">
-                    <a href="#name" class="black-text name">{{ user.displayName }}</a>
+                    <img  class="circle large" src="{{user.image}}" alt="">
+                    <br>
                 </div>
             </li>
-
+            <li><a href="/users" class="black-text name">{{ user.displayName }}</a></li>
             <li><a href="/devices"><i class="fa fa-pen-to-square fa-2xl" style="color: #4e6fa6;"></i>Mis dispositivos</a></li>
-
-            <li><a href="/dashboard"><i class="fa fa-house-laptop fa-2xl" style="color: #4e6fa6;"></i>Panel principal</a></li>
-            <!--<li><a href="/typedevices"><i class="fa fa-house-laptop fa-2xl" style="color: #4e6fa6;"></i>TypeDevices</a></li>-->
+            <li><a href="/dashboard"><i class="fa fa-house-laptop fa-2xl" style="color: #4e6fa6;"></i>Administrar mis dispositivos</a></li>
         
             <li><div class="divider"></div></li>
             <li><a class="subheader">Configuraciones</a></li>
 
             <li><a class="waves-effect" href="#!"><i class="fa fa-eye-low-vision fa-2xl" style="color: #4e6fa6;"></i>Reconocimiento facial</a></li>
-            <li><a class="waves-effect" href="#!"><i class="fa fa-qrcode fa-2xl" style="color: #4e6fa6;"></i>Generar QR</a></li>
-            <li><a class="waves-effect" href="/users"><i class="fa fa-address-card fa-2xl" style="color: #4e6fa6;"></i>Ver perfil</a></li>
+            <li><a class="waves-effect" href="#!"><i class="fa fa-qrcode fa-2xl" style="color: #4e6fa6;"></i>Mi QR</a></li>
+            <li><a class="waves-effect" href="/users"><i class="fa fa-address-card fa-2xl" style="color: #4e6fa6;"></i>Ver mi perfil</a></li>
             
             <li><div class="divider"></div></li>
             <li><a class="subheader">Cuenta</a></li>
@@ -39,10 +34,6 @@
         </ul>
 
     </div>
-
-    
-
-    
 
 </nav>
 

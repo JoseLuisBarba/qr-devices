@@ -12,7 +12,7 @@ const multer = require('multer');
 const sharp = require('sharp');
 const fs = require('fs');
 const qrcode = require('qrcode');
-
+const jwt = require('jsonwebtoken');
 
 // Destination directory and desired size
 const uploadDirectory = path.join(__dirname, '../public/uploads/devices');
@@ -411,13 +411,18 @@ router.get(
                     user: req.params.userId,
                 }
             )
-            .populate('user')
-            .lean()
-            .exec();
+                .populate('user')
+                .lean()
+                .exec();
+
+            const user = await User.findById(req.params.userId)
+                .lean()
+                .exec();
 
             res.render('devices/index',
                 {
                     devices,
+                    user,
                 }
             )
 
@@ -450,7 +455,13 @@ router.put(
             } else {
                 // const urlDevice = '//localhost:3000/qrdata/'+ device._id;
                 const urlDevice = urlbase.url +  device._id;
-                const QR = await qrcode.toDataURL(urlDevice);
+                
+                // Generate the JWT token with a duration of 5 minutes
+                const token = jwt.sign({ deviceId: device._id }, 'secret', { expiresIn: '5m' });
+                // Add the token to the device URL
+                const urlDeviceWithToken = `${urlDevice}?token=${token}`;
+
+                const QR = await qrcode.toDataURL(urlDeviceWithToken);
                 
                 device = await Device.findOneAndUpdate(
                     {

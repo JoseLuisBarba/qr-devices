@@ -3,6 +3,41 @@ const router = express.Router();
 const {ensureAuth} = require('../middleware/auth');
 const User = require('../models/User');
 const Device = require('../models/Device');
+const { v4: uuidv4 } = require('uuid');
+const path = require('path');
+const multer = require('multer');
+const sharp = require('sharp');
+const fs = require('fs');
+
+// Destination directory and desired size
+const uploadDirectory = path.join(__dirname, '../public/uploads/users');
+const targetSize = 520;
+
+
+// middlewares of multer and sharp
+const storage = multer.diskStorage({ //correct test
+    destination: uploadDirectory,
+    filename:  (req, file, cb) => {
+        const fileName =  uuidv4() + path.extname(file.originalname);
+        cb(null, fileName);
+        req.body.image = fileName;
+    }
+});
+
+const uploadImage = multer({ //correct test
+    storage,
+    fileFilter: function (req, file, cb){
+        var filetypes = /jpeg|jpg|png/;
+        var mimetype = filetypes.test(file.mimetype);
+        var extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+        if (mimetype && extname) {
+            return cb(null, true);
+        }
+        cb("Error: File upload only supports the following filetypes - " + filetypes);
+    },
+    limits: {fileSize: 3000000}
+}).single('image');
+
 
 
 
@@ -84,10 +119,11 @@ router.get(
 
 
 // @desc Update user
-// @route PUT /users/:id 
-router.put(
+// @route POST /users/:id 
+router.post(
     '/:id', 
     ensureAuth,
+    uploadImage,
     async (req, res) => {
 
         try {
@@ -101,6 +137,28 @@ router.put(
             if (user._id != req.user.id) {
                 res.redirect('/users/profile');
             } else {
+
+
+                if (req.file) {
+                    // Original image path
+                    const imagePath = path.join(uploadDirectory, req.body.image);
+                    // Generate a unique filename for the resized image
+                    const resizedFileName = `resized_${uuidv4()}.jpg`;
+                    // Resized image path
+                    const resizedImagePath = path.join(uploadDirectory, resizedFileName);
+                    // Resize image to 300x300
+                    await sharp(imagePath)
+                        .resize(targetSize,targetSize)
+                        .toFile(resizedImagePath); // Overwrites the original image with the new size
+                    req.body.image = '/uploads/users/' + path.basename(resizedImagePath);
+
+                } else {
+                    req.body.image = user.image;
+                }
+
+
+                
+
                 user = await User.findOneAndUpdate(
                     {
                         _id: req.params.id,
@@ -126,6 +184,3 @@ router.put(
 
 
 module.exports = router;
-
-
-

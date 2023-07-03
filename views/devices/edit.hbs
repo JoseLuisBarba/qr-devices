@@ -1,27 +1,34 @@
 <div class="row">
-    <h3>Sección de modificación de dispositivo</h3>
-    <div class="card hoverable small">
-        <div class="card-image">
-            <img src="/images/parallax/peces.jpg" alt="">
-        </div>
-        <div class="card-content">
-            <p>En esta sección, puedes modificar los datos de tu dispositivo al pulsar el botón "Modificar dispositivo" accediendo al formulario. Recuerda que tienes la opción de agregar todos los detalles que desees sobre tu dispositivo en el área de texto, e incluso puedes adjuntar múltiples fotos del mismo.</p>
-        </div>
+    <div class="col s12">
+        <h3>Sección de modificación de dispositivo</h3>
     </div>
     <div class="col s12">
-        <div class="col 4 s12">
-            <a href="#form" class="btn large waves-effect waves-orange grey-text text-darken-4" style="background-color: #ECF8F9;">Modificar dispositivo</a>
-            <a href="#learn" class="btn large waves-effect waves-green grey-text text-darken-4" style="background-color: #ECF8F9;">Aprender a modificar</a>
-            <a href="/dashboard" class="btn large waves-effect waves-green grey-text text-darken-4" style="background-color: #ECF8F9;">Regresar</a>
+        <div class="card hoverable small">
+            <div class="card-image">
+                <img src="/images/parallax/peces.jpg" alt="">
+            </div>
+            <div class="card-content">
+                <p>En esta sección, puedes modificar los datos de tu dispositivo al pulsar el botón "Modificar dispositivo" accediendo al formulario. Recuerda que tienes la opción de agregar todos los detalles que desees sobre tu dispositivo en el área de texto, e incluso puedes adjuntar múltiples fotos del mismo.</p>
+            </div>
         </div>
+    </div>
+    
+    <div class="col s12 m6 center">
+        <a href="#form" class="btn large waves-effect waves-orange grey-text text-darken-4" style="background-color: #ECF8F9;">Modificar dispositivo</a>
+    </div>
+    <div class="col s12 m6 center">
+        <a href="#learn" class="btn large waves-effect waves-green grey-text text-darken-4" style="background-color: #ECF8F9;">Aprender a modificar</a>
     </div>
 </div>
 
 
 
-<div id="index-banner" class="parallax-container">
-    <div class="parallax"><img src="/images/parallax/edit2.jpg" alt="Unsplashed background img 1" style="transform: translate3d(-50%, 316.178px, 0px); opacity: 1;"></div>
+
+
+<div class="parallax-container valign-wrapper">
+    <div class="parallax"><img src="/images/parallax/edit2.jpg" alt="Unsplashed background img 2"></div>
 </div>
+
 
 
 <div class="row">
@@ -32,7 +39,7 @@
 
 
                     <div class="card-panel hoverable" id="form"> 
-                            <h3 class="grey-text text-darken-4">Formulario de modificación de dispositivo</h3>
+                            <h5 class="grey-text text-darken-4">Formulario de modificación de dispositivo</h5>
                             Este es el formulario para modificar tu dispositivo. Por favor llene todos los campos.
                     </div>
 
@@ -40,7 +47,7 @@
                     <!--That's where the form be-->
                     <form action="/devices/{{device._id}}" method="POST" class="col s12" >
                         <!--Update method-->
-                        <input type="hidden" name="_method" value="PUT" > 
+                        <input type="hidden" name="_method" value="PUT" >
 
 
 
@@ -183,19 +190,18 @@
     </div>
 </div>
 
-
-<div class="row">
-    <div  class="parallax-container">
-        <div class="parallax"><img src="/images/parallax/laptop2.jpg" alt="Unsplashed background img 2" style="transform: translate3d(-50%, 316.178px, 0px); opacity: 1;"></div>
-    </div>
+<div class="parallax-container valign-wrapper">
+    <div class="parallax"><img src="/images/parallax/laptop2.jpg" alt="Unsplashed background img 2"></div>
 </div>
+
+
 
 
 <div class="row">
     <div class="section white" id="learn">
         
         <div class="card-panel hoverable"> 
-            <h3 class="grey-text text-darken-4">Aprender a modificar mi dispositivo</h3>
+            <h5 class="grey-text text-darken-4">Aprender a modificar mi dispositivo</h5>
             El siguiente video le indicará como modificar tu dispositivo.</div>
         <div class="video-container">
             <iframe width="853" height="480" src="//www.youtube.com/embed/Q8TXgCzxEnw?rel=0" frameborder="0" allowfullscreen></iframe>
@@ -204,16 +210,8 @@
 </div>
 
 
-<div class="row">
-    <div  class="parallax-container">
-        <div class="parallax"><img src="/images/parallax/tablet2.jpg" alt="Unsplashed background img 3" style="transform: translate3d(-50%, 316.178px, 0px); opacity: 1;"></div>
-    </div>
+
+
+<div class="parallax-container valign-wrapper">
+    <div class="parallax"><img src="/images/parallax/tablet2.jpg" alt="Unsplashed background img 2"></div>
 </div>
-
-<script>
-
-$(document).ready(function(){
-    $('.parallax').parallax();
-});
-    
-</script>

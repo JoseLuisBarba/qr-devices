@@ -4,6 +4,7 @@ const {ensureAuth, ensureGuest} = require('../middleware/auth');
 const Device = require('../models/Device');
 const User = require('../models/User');
 const Image = require('../models/Image');
+const jwt = require('jsonwebtoken');
 
 // @desc Login/Landing page
 // @route GET / 
@@ -50,8 +51,31 @@ router.get(
 router.get(
     '/qrdata/:id', 
     async (req, res) => {
-        console.log(req.params.id);
+        
         try {
+
+            const token = req.query.token;
+
+            // Check if token exists
+            if (!token) {
+                return res.status(401).send('Token no proporcionado');
+            }
+
+            // Verify and decode the token
+            const decoded = jwt.verify(token, 'secret');
+
+            // Check if the token has expired
+            if (Date.now() >= decoded.exp * 1000) {
+                return res.status(401).send('Token expirado');
+            }
+
+            // Check if the device ID matches the token
+            if (req.params.id !== decoded.deviceId) {
+                return res.status(401).send('Token inválido');
+            }
+
+            // Get and render the page content
+
             let device = await Device.findById(req.params.id)
                 .populate('user')    
                 .lean()
@@ -60,8 +84,6 @@ router.get(
                 .populate('device')
                 .lean()
                 .exec();
-
-            console.log(images);
 
             if (!device){
                 return res.render('error/404');
